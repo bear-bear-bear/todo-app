@@ -37,7 +37,7 @@ const TodoInsert = ({ onInsert, onReset }) => {
       <button type="submit">
         <MdAdd />
       </button>
-      <button onClick={onResetAll}>
+      <button type="button" onClick={onResetAll}>
         <MdRefresh />
       </button>
     </form>

@@ -32,8 +32,14 @@
     align-items: center;
     cursor: pointer;
     transition: 0.1s background ease-in;
-    &:hover {
+    &[type='submit']:hover {
       background: #adb5bd;
+    }
+    &[type='button']:hover {
+      background: #fa1b1b;
+    }
+    &:nth-of-type(2) {
+      border-left: 1px solid #95a0aa;
     }
   }
 }
