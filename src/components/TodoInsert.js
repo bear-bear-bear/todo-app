@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { MdAdd } from 'react-icons/md';
+import { MdAdd, MdRefresh } from 'react-icons/md';
 import './TodoInsert.scss';
 
-const TodoInsert = ({ onInsert }) => {
+const TodoInsert = ({ onInsert, onReset }) => {
   const [value, setValue] = useState('');
 
   const onChange = useCallback((e) => {
@@ -18,6 +18,15 @@ const TodoInsert = ({ onInsert }) => {
     [onInsert, value],
   );
 
+  const onResetAll = useCallback(
+    (e) => {
+      e.preventDefault(); // submit 되는 것을 막기
+      onReset();
+      setValue(''); // value 초기화
+    },
+    [onReset],
+  );
+
   return (
     <form className="TodoInsert" onSubmit={onSubmit}>
       <input
@@ -27,6 +36,9 @@ const TodoInsert = ({ onInsert }) => {
       />
       <button type="submit">
         <MdAdd />
+      </button>
+      <button onClick={onResetAll}>
+        <MdRefresh />
       </button>
     </form>
   );

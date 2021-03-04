@@ -19,6 +19,9 @@ function todoReducer(todos, action) {
     case 'REMOVE': // 제거
       // { type: 'REMOVE', id: 1}
       return todos.filter((todo) => todo.id !== action.id);
+    case 'RESET': // 전부 제거 (리스트 비우기)
+      // { type: 'RESET' }
+      return [];
     case 'TOGGLE': // 토글
       // { type: 'TOGGLE', id: 1 }
       return todos.map((todo) =>
@@ -31,6 +34,7 @@ function todoReducer(todos, action) {
 
 const App = () => {
   const [todos, dispatch] = useReducer(todoReducer, undefined, createBulkTodos);
+  console.log(todos);
 
   // 고유값으로 사용될 id
   // ref를 사용하여 변수 담기
@@ -50,13 +54,17 @@ const App = () => {
     dispatch({ type: 'REMOVE', id });
   }, []);
 
+  const onReset = useCallback(() => {
+    dispatch({ type: 'RESET' });
+  });
+
   const onToggle = useCallback((id) => {
     dispatch({ type: 'TOGGLE', id });
   }, []);
 
   return (
     <TodoTemplate>
-      <TodoInsert onInsert={onInsert} />
+      <TodoInsert onInsert={onInsert} onReset={onReset} />
       <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
