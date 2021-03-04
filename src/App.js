@@ -34,7 +34,6 @@ function todoReducer(todos, action) {
 
 const App = () => {
   const [todos, dispatch] = useReducer(todoReducer, undefined, createBulkTodos);
-  console.log(todos);
 
   // 고유값으로 사용될 id
   // ref를 사용하여 변수 담기
