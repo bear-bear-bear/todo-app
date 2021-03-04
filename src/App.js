@@ -56,7 +56,7 @@ const App = () => {
 
   const onReset = useCallback(() => {
     dispatch({ type: 'RESET' });
-  });
+  }, []);
 
   const onToggle = useCallback((id) => {
     dispatch({ type: 'TOGGLE', id });
